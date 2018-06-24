@@ -5,8 +5,8 @@ A template to manage your [`set-me-up`](https://github.com/nicholasadamou/set-me
 ## Whats inside
 
 1.  A `rcm` tag called [my](.dotfiles/tag-my) and an adapted `rcrc` file.
-2.  [Your own module](.dotfiles/tag-my/modules/my) called `my` where you can go crazy.
-3.  [Installer](.dotfiles/tag-my/modules/install.sh) that is required to download set-me-up and on top your blueprint.
+2.  [Your own module](.dotfiles/tag-my/modules/my) called `my`. You can go crazy with your customizations here.
+3.  [Installer](.dotfiles/tag-my/modules/install.sh) that is required to download `set-me-up` on top of your blueprint.
 
 ## How to use
 
@@ -14,7 +14,7 @@ A template to manage your [`set-me-up`](https://github.com/nicholasadamou/set-me
 2.  Fork this repository.
 3.  Add your customizations inside the [my tag](.dotfiles/tag-my).
 4.  Change the [`SMU_BLUEPRINT` variable value](.dotfiles/tag-my/modules/install.sh#L5) to your GitHub `user\repo` combination.
-5.  Use the installer to obtain `set-me-up` and your blueprint setup
+5.  Use the installer to obtain `set-me-up` and your blueprint setup.
 
 ```bash
 bash <(curl --progress-bar -L https://raw.githubusercontent.com/<YOURUSERNAME>/set-me-up-blueprint/master/.dotfiles/tag-smu/modules/install.sh)
