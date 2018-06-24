@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Remove these two lines when you are happy with the configuration that will be applied
-echo "You did not verify the contents of the macos module"
+# Remove these two lines when you are happy with the configuration that will be applied.
+echo "You did not verify the contents of the macos module."
 exit
 
 if [[ "${EUID}" -ne 0 ]]; then
@@ -11,8 +11,8 @@ if [[ "${EUID}" -ne 0 ]]; then
 fi
 
 # Run the osx.sh Script
-# I strongly suggest you read through the commented osx.sh
-# source file and tweak any settings based on your personal
+# I strongly suggest you read through the commented osx.sh.
+# Source file and tweak any settings based on your personal
 # preferences. The script defaults are intended for you to
 # customize. For example, if you are not running an SSD you
 # might want to change some of the settings listed in the
