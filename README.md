@@ -1,4 +1,4 @@
-# set-me-up blueprint
+# `set-me-up` blueprint
 
 A template to manage your [`set-me-up`](https://github.com/nicholasadamou/set-me-up) setup that is loosely coupled.
 
