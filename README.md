@@ -2,7 +2,7 @@
 
 A template to manage your [`set-me-up`](https://github.com/nicholasadamou/set-me-up) setup that is loosely coupled.
 
-## Whats inside
+## What'ss inside
 
 1.  A `rcm` tag called [my](.dotfiles/tag-my) and an adapted `rcrc` file.
 2.  [Your own module](.dotfiles/tag-my/modules/my) called `my`. You can go crazy with your customizations here.
