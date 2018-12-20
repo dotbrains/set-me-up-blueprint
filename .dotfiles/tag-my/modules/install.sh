@@ -6,6 +6,6 @@ export SMU_BLUEPRINT=${SMU_BLUEPRINT:-"nicholasadamou/set-me-up-blueprint"}
 export SMU_BLUEPRINT_BRANCH=${SMU_BLUEPRINT_BRANCH:-"master"}
 
 # The set-me-up version to download
-export SMU_VERSION=${SMU_VERSION:-"1.0.5"}
+export SMU_VERSION=${SMU_VERSION:-"LTS"}
 
 bash <(curl --progress-bar -L https://raw.githubusercontent.com/nicholasadamou/set-me-up/master/.dotfiles/tag-smu/modules/install.sh) "$@"
