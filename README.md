@@ -17,5 +17,5 @@ A template to manage your [`set-me-up`](https://github.com/nicholasadamou/set-me
 5.  Use the installer to obtain `set-me-up` and your blueprint setup.
 
 ```bash
-bash <(curl --progress-bar -L https://raw.githubusercontent.com/<YOURUSERNAME>/set-me-up-blueprint/master/.dotfiles/tag-my/modules/install.sh)
+bash <(curl -s -L https://raw.githubusercontent.com/<YOURUSERNAME>/set-me-up-blueprint/master/.dotfiles/tag-my/modules/install.sh)
 ```

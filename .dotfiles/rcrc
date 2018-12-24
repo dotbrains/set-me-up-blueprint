@@ -1,3 +1,2 @@
 TAGS="my smu"
-UNDOTTED="bin"
-EXCLUDES="base/*"
+EXCLUDES="base/* tag-smu/modules/install.sh"
