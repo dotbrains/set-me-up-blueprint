@@ -1,3 +1,2 @@
 TAGS="my smu"
-SYMLINK_DIRS="modules"
 EXCLUDES="base tag-smu/modules/install.sh"
