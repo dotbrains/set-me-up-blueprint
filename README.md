@@ -36,7 +36,7 @@ A template to manage your [`set-me-up`](https://github.com/nicholasadamou/set-me
 
     1.  **`--curl`** - When this is passed, it will obtain the `smu` blueprint via `curl`.
 
-    _However_, It is recommended to use `--git` instead, because of the use of `git submodules`.
+        _However_, It is recommended to use `--git` instead, because of the use of `git submodules`.
 
     2.  **`--git`** - When this is passed, it will obtain the `smu` blueprint via `git`.
 
