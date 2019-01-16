@@ -24,9 +24,9 @@ A template to manage your [`set-me-up`](https://github.com/nicholasadamou/set-me
 
 6.  Use the [installer](.dotfiles/modules/install.sh) to obtain `set-me-up` and your blueprint setup by changing the following within the below snippet:
 
-    1.  **_BRANCH-NAME-HERE_** - This should be changed based on the host device's kernel.
+    1.  **_YOUR-USERNAME_** - This should be changed to your `GitHub` username.
 
-    2.  **_YOUR-USERNAME_** - This should be changed to your `GitHub` username.
+    2.  **_BRANCH-NAME-HERE_** - This should be changed based on the host device's kernel.
 
     ```bash
     bash <(curl -s -L https://raw.githubusercontent.com/<YOUR-USERNAME>/set-me-up-blueprint/<BRANCH-NAME-HERE>/.dotfiles/modules/install.sh) --git
