@@ -5,24 +5,16 @@ A template to manage your [`set-me-up`](https://github.com/nicholasadamou/set-me
 ## What's inside
 
 1.  A `rcm` tag called [my](.dotfiles/tag-my) and an adapted `rcrc` file.
-2.  [Your own module](.dotfiles/tag-my/modules/my) called `my`. You can go crazy with your customizations here.
-3.  [Installer](.dotfiles/tag-my/modules/install.sh) that is required to download `set-me-up` on top of your blueprint.
+2.  [Your own module](.dotfiles/modules/my) called `my`. You can go crazy with your customizations here.
+3.  [Installer](.dotfiles/modules/install.sh) that is required to download `set-me-up` on top of your blueprint.
 
 ## How to use
 
 1.  [Read the docs](https://github.com/nicholasadamou/set-me-up#set-me-up)
 2.  Fork this repository.
 3.  Add your customizations inside the [my tag](.dotfiles/tag-my).
-4.  Change the [`SMU_BLUEPRINT` variable value](.dotfiles/tag-my/modules/install.sh#L5) to your GitHub `user\repo` combination.
-5.  Change the [`SMU_VERSION` variable value](.dotfiles/tag-my/modules/install.sh#L7) to either one of the following options.
-
-    1. **`master`** if on a Macintosh-based device.
-
-    2. **`debian`** if on a debian-based device.
-
-    ⚠️ More on this in step 6 below.
-
-6.  Use the installer to obtain `set-me-up` and your blueprint setup.
+4.  Change the [`SMU_BLUEPRINT` variable value](.dotfiles/modules/install.sh#L5) to your GitHub `user\repo` combination.
+5.  Change the [`SMU_VERSION` variable value](.dotfiles/modules/install.sh#L7) to either one of the following options.
 
     ⚠️ Please note that [`set-me-up`](https://github.com/nicholasadamou/set-me-up) has **two** different _branches_.
 
@@ -30,14 +22,14 @@ A template to manage your [`set-me-up`](https://github.com/nicholasadamou/set-me
 
     2.  **`debian`** - Used if host device is debian-based.
 
-    Thus, change the following in the below snippet:
+6.  Use the [installer](.dotfiles/modules/install.sh) to obtain `set-me-up` and your blueprint setup by changing the following within the below snippet:
 
     1.  **_BRANCH-NAME-HERE_** - This should be changed based on the host device's kernel.
 
     2.  **_YOUR-USERNAME_** - This should be changed to your `GitHub` username.
 
     ```bash
-    bash <(curl -s -L https://raw.githubusercontent.com/<YOUR-USERNAME>/set-me-up-blueprint/<BRANCH-NAME-HERE>/.dotfiles/tag-my/modules/install.sh) --git
+    bash <(curl -s -L https://raw.githubusercontent.com/<YOUR-USERNAME>/set-me-up-blueprint/<BRANCH-NAME-HERE>/.dotfiles/modules/install.sh) --git
     ```
 
     ⚠️ Lastly, please note that the installer has **three** different arguments:
