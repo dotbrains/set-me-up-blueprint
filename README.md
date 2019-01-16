@@ -20,6 +20,8 @@ A template to manage your [`set-me-up`](https://github.com/nicholasadamou/set-me
 
     2. **`debian`** if on a debian-based device.
 
+    ⚠️ More on this in step 6 below.
+
 6.  Use the installer to obtain `set-me-up` and your blueprint setup.
 
     ⚠️ Please note that [`set-me-up`](https://github.com/nicholasadamou/set-me-up) has **two** different _branches_.
