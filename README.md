@@ -29,15 +29,5 @@ A template to manage your [`set-me-up`](https://github.com/nicholasadamou/set-me
     2.  **_BRANCH-NAME-HERE_** - This should be changed based on the host device's kernel.
 
     ```bash
-    bash <(curl -s -L https://raw.githubusercontent.com/<YOUR-USERNAME>/set-me-up-blueprint/<BRANCH-NAME-HERE>/.dotfiles/modules/install.sh) --git
+    bash <(curl -s -L https://raw.githubusercontent.com/<YOUR-USERNAME>/set-me-up-blueprint/<BRANCH-NAME-HERE>/.dotfiles/modules/install.sh)
     ```
-
-    ⚠️ Lastly, please note that the installer has **three** different arguments:
-
-    1.  **`--curl`** - When this is passed, it will obtain the `smu` blueprint via `curl`.
-
-        _However_, It is recommended to use `--git` instead, because of the use of `git submodules`.
-
-    2.  **`--git`** - When this is passed, it will obtain the `smu` blueprint via `git`.
-
-    3.  **`--detect`** - When this is passed, it will _detect_ if the `smu` blueprint was either obtained using `git` or `curl`. If it wasn't obtained using `git` it will use `curl` or visa-versa.
