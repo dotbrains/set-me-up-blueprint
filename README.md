@@ -10,7 +10,7 @@ A template to manage your [`set-me-up`](https://github.com/nicholasadamou/set-me
 
 ## How to use
 
-1.  [Read the docs](https://github.com/nicholasadamou/set-me-up#set-me-up)
+1.  [Read the docs](https://github.com/nicholasadamou/set-me-up#set-me-up).
 2.  Fork this repository.
 3.  Add your customizations inside the [my tag](.dotfiles/tag-my).
 4.  Change the [`SMU_BLUEPRINT` variable value](.dotfiles/modules/install.sh#L5) to your GitHub `user\repo` combination.
