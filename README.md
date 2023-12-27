@@ -14,7 +14,7 @@ A template to manage your [`set-me-up`](https://github.com/nicholasadamou/set-me
 2.  Fork this repository.
 3.  Add your customizations inside the [tag-example](.dotfiles/tag-example).
 4.  Change the [`SMU_BLUEPRINT` variable value](.dotfiles/modules/install.sh#L5) to your GitHub `user\repo` combination.
-5.  Change the [`SMU_VERSION` variable value](.dotfiles/modules/install.sh#L7) to either one of the following options.
+5.  Change the [`SMU_VERSION` variable value](.dotfiles/modules/install.sh#L6) to either one of the following options.
 
     ⚠️ Please note that [`set-me-up`](https://github.com/nicholasadamou/set-me-up) has **two** different _branches_.
 
