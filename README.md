@@ -4,8 +4,8 @@ A template to manage your [`set-me-up`](https://github.com/nicholasadamou/set-me
 
 ## What's inside
 
-1.  A `rcm` tag called [my](.dotfiles/tag-my) and an adapted `rcrc` file.
-2.  [Your own module](.dotfiles/modules/my) called `my`. You can go crazy with your customizations here.
+1.  A `rcm` tag called [example](.dotfiles/tag-example) and an adapted `rcrc` file.
+2.  [Your own module](.dotfiles/modules/example) called `example`. You can go crazy with your customizations here.
 3.  [Installer](.dotfiles/modules/install.sh) that is required to download `set-me-up` on top of your blueprint.
 
 ## How to use
