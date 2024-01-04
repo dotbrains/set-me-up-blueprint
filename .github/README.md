@@ -14,13 +14,8 @@ A template to manage your [`set-me-up`](https://github.com/nicholasadamou/set-me
 2.  Fork this repository.
 3.  Add your customizations inside the [tag-example](../.dotfiles/tag-example).
 4.  Change the [`SMU_BLUEPRINT` variable value](../.dotfiles/modules/install.sh#L5) to your GitHub `user\repo` combination.
-5.  Change the [`SMU_VERSION` variable value](../.dotfiles/modules/install.sh#L6) to either one of the following options.
 
-    ⚠️ Please note that [`set-me-up`](https://github.com/nicholasadamou/set-me-up) has **two** different _branches_.
-
-    1.  **`master`** - Used if host device is *Macintosh-based*, *Debian Linux-based*, or using *Windows* (via WSL if the base subsystem is Debian/Ubuntu Linux).
-
-6.  Use the [installer](../.dotfiles/modules/install.sh) to obtain `set-me-up` and your blueprint setup by changing the following within the below snippet:
+5.  Use the [installer](../.dotfiles/modules/install.sh) to obtain `set-me-up` and your blueprint setup by changing the following within the below snippet:
 
     1.  **_YOUR-USERNAME_** - This should be changed to your `GitHub` username.
 
