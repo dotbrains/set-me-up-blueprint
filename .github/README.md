@@ -18,9 +18,7 @@ A template to manage your [`set-me-up`](https://github.com/nicholasadamou/set-me
 
     ⚠️ Please note that [`set-me-up`](https://github.com/nicholasadamou/set-me-up) has **two** different _branches_.
 
-    1.  **`master`** - Used if host device is Macintosh-based.
-
-    2.  **`debian`** - Used if host device is debian-based.
+    1.  **`master`** - Used if host device is *Macintosh-based*, *Debian Linux-based*, or using *Windows* (via WSL if the base subsystem is Debian/Ubuntu Linux).
 
 6.  Use the [installer](../.dotfiles/modules/install.sh) to obtain `set-me-up` and your blueprint setup by changing the following within the below snippet:
 
