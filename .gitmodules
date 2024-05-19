@@ -1,6 +1,6 @@
 [submodule ".dotfiles/utilities"]
 	path = .dotfiles/utilities
-	url = https://github.com/nicholasadamou/utilities
+	url = https://github.com/dotbrains/utilities
 [submodule "set-me-up-installer"]
 	path = set-me-up-installer
-	url = https://github.com/nicholasadamou/set-me-up-installer
+	url = https://github.com/dotbrains/set-me-up-installer
