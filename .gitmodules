@@ -1,5 +1,5 @@
-[submodule ".dotfiles/utilities"]
-	path = .dotfiles/utilities
+[submodule "dotfiles/utilities"]
+	path = dotfiles/utilities
 	url = https://github.com/dotbrains/utilities
 [submodule "set-me-up-installer"]
 	path = set-me-up-installer

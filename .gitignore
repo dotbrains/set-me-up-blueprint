@@ -1,4 +1,4 @@
 .idea
 *.iml
-.dotfiles/base
-.dotfiles/tag-smu
+dotfiles/base
+dotfiles/tag-smu
