@@ -4,3 +4,6 @@
 [submodule "set-me-up-installer"]
 	path = set-me-up-installer
 	url = https://github.com/dotbrains/set-me-up-installer
+[submodule "dotfiles/modules/universal"]
+	path = dotfiles/modules/universal
+	url = https://github.com/dotbrains/set-me-up-modules
