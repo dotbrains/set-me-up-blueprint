@@ -10,7 +10,7 @@ A template to manage your [`set-me-up`](https://github.com/dotbrains/set-me-up) 
 
 ## How to use
 
-1.  [Read the docs](https://github.com/dotbrains/set-me-up#set-me-up).
+1.  [Read the docs](https://github.com/dotbrains/set-me-up-docs#set-me-up).
 2.  Fork this repository.
 3.  Add your customizations inside the [tag-example](../dotfiles/tag-example).
 4.  Change the [`SMU_BLUEPRINT` variable value](../dotfiles/modules/install.sh#L5) to your GitHub `user\repo` combination.
