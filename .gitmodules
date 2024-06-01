@@ -7,3 +7,9 @@ url = https://github.com/dotbrains/set-me-up-installer
 [submodule "dotfiles/modules/universal"]
 path = dotfiles/modules/universal
 url = https://github.com/dotbrains/set-me-up-universal-modules
+[submodule "dotfiles/modules/macos/macports"]
+	path = dotfiles/modules/macos/macports
+	url = https://github.com/dotbrains/macports-module
+[submodule "dotfiles/modules/macos/xcode"]
+	path = dotfiles/modules/macos/xcode
+	url = https://github.com/dotbrains/xcode-module
