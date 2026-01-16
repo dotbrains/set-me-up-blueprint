@@ -13,3 +13,6 @@ url = https://github.com/dotbrains/set-me-up-universal-modules
 [submodule "dotfiles/modules/macos/xcode"]
 	path = dotfiles/modules/macos/xcode
 	url = https://github.com/dotbrains/xcode-module
+[submodule "dotfiles/modules/preferences"]
+	path = dotfiles/modules/preferences
+	url = https://github.com/dotbrains/preferences-module
