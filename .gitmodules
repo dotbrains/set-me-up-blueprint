@@ -16,3 +16,6 @@ url = https://github.com/dotbrains/set-me-up-universal-modules
 [submodule "dotfiles/modules/preferences"]
 	path = dotfiles/modules/preferences
 	url = https://github.com/dotbrains/preferences-module
+[submodule "docs"]
+	path = docs
+	url = https://github.com/dotbrains/set-me-up-docs
