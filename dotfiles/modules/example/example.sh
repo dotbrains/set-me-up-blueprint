@@ -12,6 +12,7 @@ declare current_dir && \
 main() {
 
 	# Add content here
+	:
 
 }
 
