@@ -102,6 +102,22 @@ The [`examples/nix-flake`](examples/nix-flake) directory shows a Home
 Manager-first blueprint shape for users who want `flake.nix` to be the primary
 entry point.
 
+Profiles may override the global adapter:
+
+```toml
+[provisioning]
+adapter = "rcm"
+
+[profile.default]
+adapter = "home-manager"
+modules = ["base", "nushell"]
+```
+
+Use `smu nix init --profile default` to generate the Home Manager import and
+flake files, `smu nix switch --profile default` to apply them, and
+`smu nix parity --profile default --json` to compare remaining `rcm` coverage
+against the Nix path.
+
 If you intentionally want to discard local blueprint changes during bootstrap
 or update, pass `--force-reset`.
 

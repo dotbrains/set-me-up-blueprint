@@ -2,6 +2,7 @@
 adapter = "home-manager"
 
 [profile.default]
+adapter = "home-manager"
 modules = [
   "base",
   "nushell",
