@@ -28,6 +28,13 @@ provider_examples = {
     "digitalocean-droplet": {"mode": "hybrid", "adapter": "hybrid", "nix_adapter": "home-manager"},
     "hetzner-cloud": {"mode": "hybrid", "adapter": "hybrid", "nix_adapter": "home-manager"},
 }
+adapter_capabilities = {
+    "rcm": {"mode": "rcm", "engine": "rcm", "requires_nix": False, "supports_fallback": False, "scope": "user"},
+    "home-manager": {"mode": "nix", "engine": "home-manager", "requires_nix": True, "supports_fallback": False, "scope": "user"},
+    "nix-darwin": {"mode": "nix", "engine": "nix-darwin", "requires_nix": True, "supports_fallback": False, "scope": "system"},
+    "nixos": {"mode": "nix", "engine": "nixos", "requires_nix": True, "supports_fallback": False, "scope": "system"},
+    "hybrid": {"mode": "hybrid", "engine": "home-manager", "requires_nix": True, "supports_fallback": True, "scope": "user"},
+}
 
 
 def record(name, path, ok, message):
@@ -105,7 +112,13 @@ for provider, expected in provider_examples.items():
         ok = ok and nix_adapter == expected["nix_adapter"]
     else:
         ok = ok and not nix_adapter
-    record("provider-example", rel, ok, f"{mode or '<missing>'}/{adapter or '<missing>'}")
+    record(
+        "provider-example",
+        rel,
+        ok,
+        f"{mode or '<missing>'}/{adapter or '<missing>'}",
+    )
+    checks[-1]["capability"] = adapter_capabilities.get(adapter, {})
 
 payload = {"valid": not errors, "errors": errors, "checks": checks}
 if json_output:

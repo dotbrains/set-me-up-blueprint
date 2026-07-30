@@ -113,6 +113,7 @@ Inspect the supported provider shapes before choosing a blueprint mode:
 
 ```bash
 smu blueprint providers --path . --json
+smu provisioning-adapter capabilities --json
 ```
 
 The current provider matrix is:
@@ -125,6 +126,10 @@ The current provider matrix is:
 | [`nixos-vps`](examples/providers/nixos-vps) | NixOS VPS | `nix` | `nixos` | - |
 | [`digitalocean-droplet`](examples/providers/digitalocean-droplet) | DigitalOcean Droplet | `hybrid` | `hybrid` | `home-manager` |
 | [`hetzner-cloud`](examples/providers/hetzner-cloud) | Hetzner Cloud | `hybrid` | `hybrid` | `home-manager` |
+
+Use the capability output when tooling needs to decide between adapters. It
+records each adapter's mode, engine, scope, supported host families, Nix
+requirement, and fallback behavior.
 
 When an example has `flake.lock`, validation runs `nix flake check` in locked
 mode with `--no-update-lock-file`. Without a lockfile, validation still checks

@@ -27,3 +27,6 @@ and this readiness document.
 
 Use `smu blueprint providers --path . --json` to print this provider support
 matrix for tools or docs generators.
+Use `smu provisioning-adapter capabilities --json` to print the adapter
+capability contract that explains each adapter's mode, engine, host families,
+Nix requirement, scope, and fallback behavior.
