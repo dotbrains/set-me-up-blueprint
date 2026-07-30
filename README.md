@@ -109,6 +109,23 @@ The example directories show Nix-first blueprint shapes:
 - [`examples/github-actions`](examples/github-actions): copyable validation
   jobs for `rcm`, Nix, and hybrid blueprints.
 
+Inspect the supported provider shapes before choosing a blueprint mode:
+
+```bash
+smu blueprint providers --path . --json
+```
+
+The current provider matrix is:
+
+| Provider example | Target | Mode | Adapter | Hybrid Nix adapter |
+| --- | --- | --- | --- | --- |
+| [`debian-vps`](examples/providers/debian-vps) | Debian VPS | `nix` | `home-manager` | - |
+| [`ubuntu-vps`](examples/providers/ubuntu-vps) | Ubuntu VPS | `nix` | `home-manager` | - |
+| [`arch-vps`](examples/providers/arch-vps) | Arch VPS | `nix` | `home-manager` | - |
+| [`nixos-vps`](examples/providers/nixos-vps) | NixOS VPS | `nix` | `nixos` | - |
+| [`digitalocean-droplet`](examples/providers/digitalocean-droplet) | DigitalOcean Droplet | `hybrid` | `hybrid` | `home-manager` |
+| [`hetzner-cloud`](examples/providers/hetzner-cloud) | Hetzner Cloud | `hybrid` | `hybrid` | `home-manager` |
+
 When an example has `flake.lock`, validation runs `nix flake check` in locked
 mode with `--no-update-lock-file`. Without a lockfile, validation still checks
 the flake shape when Nix can resolve inputs.

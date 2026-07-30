@@ -10,17 +10,20 @@ This blueprint supports three provisioning modes:
 
 Provider examples:
 
-| Provider example | Mode | Adapter |
-| --- | --- | --- |
-| `examples/providers/debian-vps` | `nix` | `home-manager` |
-| `examples/providers/ubuntu-vps` | `nix` | `home-manager` |
-| `examples/providers/arch-vps` | `nix` | `home-manager` |
-| `examples/providers/nixos-vps` | `nix` | `nixos` |
-| `examples/providers/digitalocean-droplet` | `hybrid` | `hybrid` |
-| `examples/providers/hetzner-cloud` | `hybrid` | `hybrid` |
+| Provider example | Target | Mode | Adapter | Hybrid Nix adapter |
+| --- | --- | --- | --- | --- |
+| `examples/providers/debian-vps` | Debian VPS | `nix` | `home-manager` | - |
+| `examples/providers/ubuntu-vps` | Ubuntu VPS | `nix` | `home-manager` | - |
+| `examples/providers/arch-vps` | Arch VPS | `nix` | `home-manager` | - |
+| `examples/providers/nixos-vps` | NixOS VPS | `nix` | `nixos` | - |
+| `examples/providers/digitalocean-droplet` | DigitalOcean Droplet | `hybrid` | `hybrid` | `home-manager` |
+| `examples/providers/hetzner-cloud` | Hetzner Cloud | `hybrid` | `hybrid` | `home-manager` |
 
 Use `smu blueprint ci --path . --check-docs --json` in blueprint CI. The local
 `scripts/blueprint-ci-contract.sh --check-docs` script is kept as a fallback
 for template forks that have not updated the installer yet. Both checks cover
 mode/adapter consistency, provider examples, copyable GitHub Actions examples,
 and this readiness document.
+
+Use `smu blueprint providers --path . --json` to print this provider support
+matrix for tools or docs generators.

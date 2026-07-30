@@ -20,6 +20,14 @@ root = pathlib.Path(sys.argv[1])
 json_output = sys.argv[2] == "true"
 errors = []
 checks = []
+provider_examples = {
+    "debian-vps": {"mode": "nix", "adapter": "home-manager", "nix_adapter": None},
+    "ubuntu-vps": {"mode": "nix", "adapter": "home-manager", "nix_adapter": None},
+    "arch-vps": {"mode": "nix", "adapter": "home-manager", "nix_adapter": None},
+    "nixos-vps": {"mode": "nix", "adapter": "nixos", "nix_adapter": None},
+    "digitalocean-droplet": {"mode": "hybrid", "adapter": "hybrid", "nix_adapter": "home-manager"},
+    "hetzner-cloud": {"mode": "hybrid", "adapter": "hybrid", "nix_adapter": "home-manager"},
+}
 
 
 def record(name, path, ok, message):
@@ -82,10 +90,22 @@ for workflow in ("rcm.yml", "nix.yml", "hybrid.yml"):
     rel = path.relative_to(root)
     record("github-actions-example", rel, path.exists(), "present" if path.exists() else "missing")
 
-for provider in ("debian-vps", "ubuntu-vps", "arch-vps", "nixos-vps", "digitalocean-droplet", "hetzner-cloud"):
+for provider, expected in provider_examples.items():
     path = root / "examples" / "providers" / provider / "smu.toml"
     rel = path.relative_to(root)
-    record("provider-example", rel, path.exists(), "present" if path.exists() else "missing")
+    if not path.exists():
+        record("provider-example", rel, False, "missing")
+        continue
+    provisioning = parse_simple_toml(path).get("provisioning", {})
+    mode = provisioning.get("mode")
+    adapter = provisioning.get("adapter")
+    nix_adapter = provisioning.get("nix_adapter")
+    ok = mode == expected["mode"] and adapter == expected["adapter"]
+    if expected["nix_adapter"]:
+        ok = ok and nix_adapter == expected["nix_adapter"]
+    else:
+        ok = ok and not nix_adapter
+    record("provider-example", rel, ok, f"{mode or '<missing>'}/{adapter or '<missing>'}")
 
 payload = {"valid": not errors, "errors": errors, "checks": checks}
 if json_output:
