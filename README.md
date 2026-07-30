@@ -11,6 +11,8 @@ reusable installer behavior.
 1.  A `rcm` tag called [example](../dotfiles/tag-example) and an adapted `rcrc` file.
 2.  [Your own module](../dotfiles/modules/example) called `example`. You can go crazy with your customizations here.
 3.  [Installer](../dotfiles/modules/install.sh) that is required to download `set-me-up` on top of your blueprint.
+4.  [`smu.toml`](../smu.toml), which selects the provisioning adapter and
+    default profile modules for this blueprint.
 
 ## How to use
 
@@ -18,8 +20,11 @@ reusable installer behavior.
 2.  Fork this repository.
 3.  Add your customizations inside the [tag-example](../dotfiles/tag-example).
 4.  Change the [`SMU_BLUEPRINT` variable value](../dotfiles/modules/install.sh#L5) to your GitHub `user\repo` combination.
+5.  Keep `adapter = "rcm"` in [`smu.toml`](../smu.toml) for the traditional
+    thoughtbot `rcm` dotfile flow, or change it to `home-manager` for a
+    Nix/Home Manager blueprint.
 
-5.  Use the [installer](../dotfiles/modules/install.sh) to obtain your
+6.  Use the [installer](../dotfiles/modules/install.sh) to obtain your
     blueprint setup by changing the following within the below snippet:
 
     1.  **_YOUR-USERNAME_** - This should be changed to your `GitHub` username.
@@ -65,6 +70,24 @@ smu update installer   # update the smu installer repository
 smu update modules     # update blueprint submodules
 smu update --all       # update blueprint, installer, modules, and generated config
 ```
+
+## Provisioning adapters
+
+Blueprints choose their primary provisioning engine in `smu.toml`:
+
+```toml
+[provisioning]
+adapter = "rcm"
+
+[profile.default]
+modules = ["example"]
+```
+
+Use `rcm` for shell/Brewfile/packages modules and thoughtbot `rcm` dotfile
+symlinks. Use `home-manager` when modules publish a Home Manager implementation
+in `module.toml`; `smu provisioning-adapter apply --adapter home-manager
+--profile default` writes the generated Home Manager import file and runs
+`home-manager switch`.
 
 If you intentionally want to discard local blueprint changes during bootstrap
 or update, pass `--force-reset`.
