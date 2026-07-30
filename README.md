@@ -75,9 +75,10 @@ For an Ubuntu/Debian VPS such as a DigitalOcean Droplet, install from your
 blueprint fork, then provision the targeted server module:
 
 ```bash
-smu --provision --modules server/headless --no-base
+SMU_SUBMODULE_SCOPE=platform bash <(curl -s -L "$INSTALL_URL")
+smu --setup-profile vps
 ```
 
 Use this path for SSH-only hosts. It avoids the workstation-oriented Debian
 modules and installs only a small baseline of transport, Git, archive, JSON,
-terminal, editor, sync, and firewall packages.
+terminal, editor, and sync packages.
