@@ -8,6 +8,7 @@ cd "$repo_root"
 
 find . -type f -name '*.sh' -not -path '*/.git/*' -exec bash -n {} +
 scripts/validate-examples.sh
+scripts/blueprint-ci-contract.sh --check-docs
 if command -v nix >/dev/null 2>&1; then
     for flake_dir in examples/nix-flake examples/nix-darwin examples/nixos; do
         lock_flag=""

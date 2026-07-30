@@ -152,6 +152,19 @@ Blueprint examples are checked by `scripts/validate-examples.sh`, which
 validates mode/adapter consistency, provider examples, and copyable GitHub
 Actions workflows without requiring a live installed checkout.
 
+Use this contract in CI:
+
+```bash
+scripts/blueprint-ci-contract.sh --check-docs
+scripts/blueprint-ci-contract.sh --check-docs --json
+```
+
+It wraps example validation and checks the checked-in provisioning readiness
+matrix at
+[`PROVISIONING-COMPATIBILITY.md`](PROVISIONING-COMPATIBILITY.md).
+Use `smu blueprint migrate ...` locally when changing modes; use the CI
+contract to prove a committed blueprint remains internally consistent.
+
 If you intentionally want to discard local blueprint changes during bootstrap
 or update, pass `--force-reset`.
 
