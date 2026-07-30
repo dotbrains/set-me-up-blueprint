@@ -113,6 +113,7 @@ Inspect the supported provider shapes before choosing a blueprint mode:
 
 ```bash
 smu blueprint providers --path . --json
+smu blueprint recommend --target ubuntu --path . --json
 smu provisioning-adapter capabilities --json
 ```
 
@@ -130,6 +131,9 @@ The current provider matrix is:
 Use the capability output when tooling needs to decide between adapters. It
 records each adapter's mode, engine, scope, supported host families, Nix
 requirement, and fallback behavior.
+Use the recommendation command when starting from a host intent. Supported
+targets include `debian`, `ubuntu`, `arch`, `nixos`, `digitalocean`, `hetzner`,
+`macos`, and `rcm-only`.
 
 When an example has `flake.lock`, validation runs `nix flake check` in locked
 mode with `--no-update-lock-file`. Without a lockfile, validation still checks

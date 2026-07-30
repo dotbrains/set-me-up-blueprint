@@ -30,3 +30,5 @@ matrix for tools or docs generators.
 Use `smu provisioning-adapter capabilities --json` to print the adapter
 capability contract that explains each adapter's mode, engine, host families,
 Nix requirement, scope, and fallback behavior.
+Use `smu blueprint recommend --target ubuntu --path . --json` to turn a host
+intent into a recommended mode, adapter, and provider example.
