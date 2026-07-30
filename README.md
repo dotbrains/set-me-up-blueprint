@@ -133,6 +133,25 @@ Use `smu blueprint init --mode rcm|nix|hybrid` when starting a fork from an
 empty checkout. The generated `smu.toml` records both the user-facing
 `mode` and the concrete adapter that `smu` should apply.
 
+Validate that mode choice before applying modules:
+
+```bash
+smu blueprint doctor --strict --json
+```
+
+For an existing `rcm` fork, migrate in stages:
+
+1. Run `smu blueprint migrate --from rcm --to hybrid --force --json` to keep
+   `rcm` fallback while adding Nix coverage.
+2. Run `smu nix migrate compare --profile default --json` to classify modules
+   as `ported`, `partial`, `blocked`, or `kept-rcm`.
+3. Move to `smu blueprint migrate --from rcm --to nix --force --json` once
+   every required module has a Nix adapter.
+
+Blueprint examples are checked by `scripts/validate-examples.sh`, which
+validates mode/adapter consistency, provider examples, and copyable GitHub
+Actions workflows without requiring a live installed checkout.
+
 If you intentionally want to discard local blueprint changes during bootstrap
 or update, pass `--force-reset`.
 
