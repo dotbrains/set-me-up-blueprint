@@ -19,3 +19,6 @@ url = https://github.com/dotbrains/set-me-up-universal-modules
 [submodule "docs"]
 	path = docs
 	url = https://github.com/dotbrains/set-me-up-docs
+[submodule "dotfiles/modules/debian"]
+	path = dotfiles/modules/debian
+	url = https://github.com/dotbrains/set-me-up-debian-modules
