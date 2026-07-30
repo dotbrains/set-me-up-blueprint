@@ -45,13 +45,15 @@ The bootstrap script is intentionally small:
 Preview a bootstrap before it changes the checkout:
 
 ```bash
-bash <(curl -s -L https://raw.githubusercontent.com/<YOUR-USERNAME>/set-me-up-blueprint/<BRANCH-NAME-HERE>/dotfiles/modules/install.sh) --plan
+INSTALL_URL="https://raw.githubusercontent.com/<YOUR-USERNAME>/set-me-up-blueprint/<BRANCH-NAME-HERE>/dotfiles/modules/install.sh"
+bash <(curl -s -L "$INSTALL_URL") --plan
+bash <(curl -s -L "$INSTALL_URL") --plan --json
 ```
 
 Test an installer candidate branch before it is published to `main`:
 
 ```bash
-SMU_INSTALLER_REF=my-branch bash <(curl -s -L https://raw.githubusercontent.com/<YOUR-USERNAME>/set-me-up-blueprint/<BRANCH-NAME-HERE>/dotfiles/modules/install.sh) --plan
+SMU_INSTALLER_REF=my-branch bash <(curl -s -L "$INSTALL_URL") --plan
 ```
 
 Routine updates should use `smu` from the installed checkout:
