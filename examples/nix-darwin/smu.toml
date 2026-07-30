@@ -1,0 +1,10 @@
+[provisioning]
+adapter = "nix-darwin"
+
+[profile.default]
+adapter = "nix-darwin"
+modules = [
+  "base",
+  "nushell",
+  "zsh",
+]

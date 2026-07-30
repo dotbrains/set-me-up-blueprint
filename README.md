@@ -98,9 +98,15 @@ Profile examples live in [`profiles/`](profiles/):
 - [`vps-home-manager.toml`](profiles/vps-home-manager.toml): headless VPS shape.
 - [`nixos-server.toml`](profiles/nixos-server.toml): full NixOS host shape.
 
-The [`examples/nix-flake`](examples/nix-flake) directory shows a Home
-Manager-first blueprint shape for users who want `flake.nix` to be the primary
-entry point.
+The example directories show Nix-first blueprint shapes:
+
+- [`examples/nix-flake`](examples/nix-flake): Home Manager user provisioning.
+- [`examples/nix-darwin`](examples/nix-darwin): macOS system provisioning.
+- [`examples/nixos`](examples/nixos): NixOS host provisioning.
+
+When an example has `flake.lock`, validation runs `nix flake check` in locked
+mode with `--no-update-lock-file`. Without a lockfile, validation still checks
+the flake shape when Nix can resolve inputs.
 
 Profiles may override the global adapter:
 
