@@ -48,6 +48,7 @@ Preview a bootstrap before it changes the checkout:
 INSTALL_URL="https://raw.githubusercontent.com/<YOUR-USERNAME>/set-me-up-blueprint/<BRANCH-NAME-HERE>/dotfiles/modules/install.sh"
 bash <(curl -s -L "$INSTALL_URL") --plan
 bash <(curl -s -L "$INSTALL_URL") --plan --json
+bash <(curl -s -L "$INSTALL_URL") --doctor --json
 ```
 
 Test an installer candidate branch before it is published to `main`:
