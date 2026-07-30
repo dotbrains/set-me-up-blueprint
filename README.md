@@ -68,3 +68,16 @@ smu update --all       # update blueprint, installer, modules, and generated con
 
 If you intentionally want to discard local blueprint changes during bootstrap
 or update, pass `--force-reset`.
+
+## Headless VPS
+
+For an Ubuntu/Debian VPS such as a DigitalOcean Droplet, install from your
+blueprint fork, then provision the targeted server module:
+
+```bash
+smu --provision --modules server/headless --no-base
+```
+
+Use this path for SSH-only hosts. It avoids the workstation-oriented Debian
+modules and installs only a small baseline of transport, Git, archive, JSON,
+terminal, editor, sync, and firewall packages.
