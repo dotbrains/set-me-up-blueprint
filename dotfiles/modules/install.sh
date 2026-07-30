@@ -10,4 +10,7 @@ export SMU_BLUEPRINT_BRANCH=${SMU_BLUEPRINT_BRANCH:-"master"}
 # Note: <path> is relative to '$HOME/set-me-up'
 export SMU_IGNORED_PATHS="${SMU_IGNORED_PATHS:-""}"
 
-bash <(curl -s -L https://raw.githubusercontent.com/dotbrains/set-me-up-installer/main/install.sh) "$@"
+export SMU_INSTALLER_REF="${SMU_INSTALLER_REF:-main}"
+export SMU_INSTALLER_URL="${SMU_INSTALLER_URL:-https://raw.githubusercontent.com/dotbrains/set-me-up-installer/${SMU_INSTALLER_REF}/install.sh}"
+
+bash <(curl -s -L "$SMU_INSTALLER_URL") "$@"

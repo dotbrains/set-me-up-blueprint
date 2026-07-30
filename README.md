@@ -48,6 +48,12 @@ Preview a bootstrap before it changes the checkout:
 bash <(curl -s -L https://raw.githubusercontent.com/<YOUR-USERNAME>/set-me-up-blueprint/<BRANCH-NAME-HERE>/dotfiles/modules/install.sh) --plan
 ```
 
+Test an installer candidate branch before it is published to `main`:
+
+```bash
+SMU_INSTALLER_REF=my-branch bash <(curl -s -L https://raw.githubusercontent.com/<YOUR-USERNAME>/set-me-up-blueprint/<BRANCH-NAME-HERE>/dotfiles/modules/install.sh) --plan
+```
+
 Routine updates should use `smu` from the installed checkout:
 
 ```bash
