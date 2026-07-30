@@ -155,12 +155,14 @@ Actions workflows without requiring a live installed checkout.
 Use this contract in CI:
 
 ```bash
+smu blueprint ci --path . --check-docs --json
 scripts/blueprint-ci-contract.sh --check-docs
 scripts/blueprint-ci-contract.sh --check-docs --json
 ```
 
-It wraps example validation and checks the checked-in provisioning readiness
-matrix at
+The `smu blueprint ci` command is the stable installer-owned CI entrypoint.
+The local script is kept as a template fallback. Both wrap example validation
+and check the checked-in provisioning readiness matrix at
 [`PROVISIONING-COMPATIBILITY.md`](PROVISIONING-COMPATIBILITY.md).
 Use `smu blueprint migrate ...` locally when changing modes; use the CI
 contract to prove a committed blueprint remains internally consistent.

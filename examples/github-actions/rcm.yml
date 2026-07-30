@@ -14,6 +14,4 @@ jobs:
         with:
           repository: dotbrains/set-me-up-installer
           path: set-me-up-installer
-      - run: mkdir -p /tmp/smu-home
-      - run: SMU_HOME_DIR=/tmp/smu-home python3 set-me-up-installer/smu.py blueprint init --mode rcm --force
-      - run: SMU_HOME_DIR=/tmp/smu-home python3 set-me-up-installer/smu.py provisioning-adapter doctor --json
+      - run: python3 set-me-up-installer/smu.py blueprint ci --path . --check-docs --json

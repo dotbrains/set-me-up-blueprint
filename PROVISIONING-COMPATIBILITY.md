@@ -19,6 +19,8 @@ Provider examples:
 | `examples/providers/digitalocean-droplet` | `hybrid` | `hybrid` |
 | `examples/providers/hetzner-cloud` | `hybrid` | `hybrid` |
 
-Use `scripts/blueprint-ci-contract.sh --check-docs` in blueprint CI. It checks
+Use `smu blueprint ci --path . --check-docs --json` in blueprint CI. The local
+`scripts/blueprint-ci-contract.sh --check-docs` script is kept as a fallback
+for template forks that have not updated the installer yet. Both checks cover
 mode/adapter consistency, provider examples, copyable GitHub Actions examples,
 and this readiness document.
