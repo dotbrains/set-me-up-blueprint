@@ -3,12 +3,9 @@ mode = "nix"
 adapter = "home-manager"
 
 [profile.default]
+adapter = "home-manager"
 modules = [
   "base",
   "nushell",
-  "neovim",
   "mise",
-  "node/mise",
-  "python/mise",
-  "rust/cargo",
 ]

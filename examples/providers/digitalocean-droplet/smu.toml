@@ -7,12 +7,6 @@ allow_rcm_fallback = true
 [profile.default]
 modules = [
   "base",
-  "homebrew",
   "nushell",
-  "neovim",
   "mise",
-  "go/mise",
-  "node/mise",
-  "python/mise",
-  "rust/cargo",
 ]

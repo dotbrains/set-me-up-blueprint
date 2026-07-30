@@ -1,4 +1,5 @@
 [provisioning]
+mode = "rcm"
 adapter = "rcm"
 
 [profile.default]

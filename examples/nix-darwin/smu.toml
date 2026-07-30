@@ -1,4 +1,5 @@
 [provisioning]
+mode = "nix"
 adapter = "nix-darwin"
 
 [profile.default]

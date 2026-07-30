@@ -77,6 +77,7 @@ Blueprints choose their primary provisioning engine in `smu.toml`:
 
 ```toml
 [provisioning]
+mode = "rcm"
 adapter = "rcm"
 
 [profile.default]
@@ -103,6 +104,10 @@ The example directories show Nix-first blueprint shapes:
 - [`examples/nix-flake`](examples/nix-flake): Home Manager user provisioning.
 - [`examples/nix-darwin`](examples/nix-darwin): macOS system provisioning.
 - [`examples/nixos`](examples/nixos): NixOS host provisioning.
+- [`examples/providers`](examples/providers): Debian, Ubuntu, Arch, NixOS,
+  DigitalOcean, and Hetzner VPS shapes.
+- [`examples/github-actions`](examples/github-actions): copyable validation
+  jobs for `rcm`, Nix, and hybrid blueprints.
 
 When an example has `flake.lock`, validation runs `nix flake check` in locked
 mode with `--no-update-lock-file`. Without a lockfile, validation still checks
@@ -123,6 +128,10 @@ Use `smu nix init --profile default` to generate the Home Manager import and
 flake files, `smu nix switch --profile default` to apply them, and
 `smu nix parity --profile default --json` to compare remaining `rcm` coverage
 against the Nix path.
+
+Use `smu blueprint init --mode rcm|nix|hybrid` when starting a fork from an
+empty checkout. The generated `smu.toml` records both the user-facing
+`mode` and the concrete adapter that `smu` should apply.
 
 If you intentionally want to discard local blueprint changes during bootstrap
 or update, pass `--force-reset`.
