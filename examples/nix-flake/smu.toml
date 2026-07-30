@@ -1,0 +1,12 @@
+[provisioning]
+adapter = "home-manager"
+
+[profile.default]
+modules = [
+  "base",
+  "nushell",
+  "neovim",
+  "zsh",
+  "tmux",
+  "alacritty",
+]

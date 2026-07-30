@@ -98,6 +98,10 @@ Profile examples live in [`profiles/`](profiles/):
 - [`vps-home-manager.toml`](profiles/vps-home-manager.toml): headless VPS shape.
 - [`nixos-server.toml`](profiles/nixos-server.toml): full NixOS host shape.
 
+The [`examples/nix-flake`](examples/nix-flake) directory shows a Home
+Manager-first blueprint shape for users who want `flake.nix` to be the primary
+entry point.
+
 If you intentionally want to discard local blueprint changes during bootstrap
 or update, pass `--force-reset`.
 
