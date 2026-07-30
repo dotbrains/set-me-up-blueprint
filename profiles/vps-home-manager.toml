@@ -1,0 +1,9 @@
+[provisioning]
+adapter = "home-manager"
+
+[profile.default]
+modules = [
+  "base",
+  "nushell",
+  "mise",
+]

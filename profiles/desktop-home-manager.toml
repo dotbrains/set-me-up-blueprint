@@ -1,0 +1,13 @@
+[provisioning]
+adapter = "home-manager"
+
+[profile.default]
+modules = [
+  "base",
+  "nushell",
+  "neovim",
+  "mise",
+  "node/mise",
+  "python/mise",
+  "rust/cargo",
+]

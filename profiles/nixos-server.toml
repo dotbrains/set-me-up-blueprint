@@ -1,0 +1,10 @@
+[provisioning]
+adapter = "nixos"
+
+[profile.server]
+modules = [
+  "base",
+  "nushell",
+  "mise",
+  "python/mise",
+]

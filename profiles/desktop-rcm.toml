@@ -1,0 +1,12 @@
+[provisioning]
+adapter = "rcm"
+
+[profile.default]
+modules = [
+  "base",
+  "homebrew",
+  "nushell",
+  "neovim",
+  "mise",
+  "rust/cargo",
+]

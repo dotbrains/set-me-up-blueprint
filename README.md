@@ -89,6 +89,15 @@ in `module.toml`; `smu provisioning-adapter apply --adapter home-manager
 --profile default` writes the generated Home Manager import file and runs
 `home-manager switch`.
 
+Profile examples live in [`profiles/`](profiles/):
+
+- [`desktop-rcm.toml`](profiles/desktop-rcm.toml): thoughtbot `rcm` first.
+- [`desktop-home-manager.toml`](profiles/desktop-home-manager.toml): user-level
+  Home Manager on macOS, Debian/Ubuntu, or Arch with Nix installed.
+- [`hybrid.toml`](profiles/hybrid.toml): Home Manager first with `rcm` fallback.
+- [`vps-home-manager.toml`](profiles/vps-home-manager.toml): headless VPS shape.
+- [`nixos-server.toml`](profiles/nixos-server.toml): full NixOS host shape.
+
 If you intentionally want to discard local blueprint changes during bootstrap
 or update, pass `--force-reset`.
 
