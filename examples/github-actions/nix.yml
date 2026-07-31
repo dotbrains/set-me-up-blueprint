@@ -17,4 +17,5 @@ jobs:
           path: set-me-up-installer
       - run: python3 set-me-up-installer/smu.py blueprint ci --path . --check-docs --json
       - run: python3 set-me-up-installer/smu.py nix bootstrap --json
+      - run: SMU_HOME_DIR="$PWD" python3 set-me-up-installer/smu.py provisioning-adapter preflight --adapter home-manager -m example --json || true
       - run: nix --extra-experimental-features 'nix-command flakes' flake check --no-build ./examples/nix-flake

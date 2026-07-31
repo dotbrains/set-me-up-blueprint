@@ -87,6 +87,15 @@ for workflow in ("rcm.yml", "nix.yml", "hybrid.yml"):
     path = root / "examples" / "github-actions" / workflow
     rel = path.relative_to(root)
     record("github-actions-example", rel, path.exists(), "present" if path.exists() else "missing")
+    if path.exists():
+        workflow_text = path.read_text()
+        has_preflight = "provisioning-adapter preflight" in workflow_text
+        record(
+            "github-actions-preflight",
+            rel,
+            has_preflight,
+            "preflight" if has_preflight else "missing preflight",
+        )
 
 for provider, expected in provider_examples.items():
     path = root / "examples" / "providers" / provider / "smu.toml"

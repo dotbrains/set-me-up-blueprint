@@ -43,3 +43,5 @@ Use `smu provisioning-adapter preflight --adapter home-manager --profile
 default --json` before apply to inspect module coverage, generated artifact
 paths, hybrid fallback decisions, and intended commands without mutating the
 host.
+The GitHub Actions examples include a preflight step so CI templates fail when
+that read-only gate is missing from a blueprint workflow.

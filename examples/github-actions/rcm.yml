@@ -15,3 +15,4 @@ jobs:
           repository: dotbrains/set-me-up-installer
           path: set-me-up-installer
       - run: python3 set-me-up-installer/smu.py blueprint ci --path . --check-docs --json
+      - run: SMU_HOME_DIR="$PWD" python3 set-me-up-installer/smu.py provisioning-adapter preflight --adapter rcm -m example --json

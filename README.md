@@ -197,6 +197,7 @@ Use this contract in CI:
 
 ```bash
 smu blueprint ci --path . --check-docs --json
+SMU_HOME_DIR="$PWD" smu provisioning-adapter preflight --adapter rcm -m example --json
 scripts/blueprint-ci-contract.sh --check-docs
 scripts/blueprint-ci-contract.sh --check-docs --json
 ```
@@ -206,7 +207,8 @@ The local script is kept as a template fallback. Both wrap example validation
 and check the checked-in provisioning readiness matrix at
 [`PROVISIONING-COMPATIBILITY.md`](PROVISIONING-COMPATIBILITY.md).
 Use `smu blueprint migrate ...` locally when changing modes; use the CI
-contract to prove a committed blueprint remains internally consistent.
+contract plus read-only provisioning preflight to prove a committed blueprint
+remains internally consistent before any apply command can run.
 
 If you intentionally want to discard local blueprint changes during bootstrap
 or update, pass `--force-reset`.
