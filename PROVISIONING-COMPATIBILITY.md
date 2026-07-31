@@ -39,3 +39,7 @@ Add `--dry-run` to preview the generated starter config, or `--write --output
 smu.toml` to create it.
 Use `--validate` to prove an existing starter config still matches the selected
 target recommendation.
+Use `smu provisioning-adapter preflight --adapter home-manager --profile
+default --json` before apply to inspect module coverage, generated artifact
+paths, hybrid fallback decisions, and intended commands without mutating the
+host.

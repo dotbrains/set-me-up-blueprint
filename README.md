@@ -118,6 +118,7 @@ smu blueprint recommend --target ubuntu --path . --dry-run
 smu blueprint recommend --target ubuntu --path . --write --output smu.toml
 smu blueprint recommend --target ubuntu --path . --validate --json
 smu provisioning-adapter capabilities --json
+smu provisioning-adapter preflight --adapter home-manager --profile default --json
 ```
 
 The current provider matrix is:
@@ -144,6 +145,10 @@ Add `--dry-run` to preview the generated starter `smu.toml`; add `--write
 --output smu.toml` to create it in a fork.
 Use `--validate` to check an existing starter config against the recommendation
 for that target.
+Run `smu provisioning-adapter preflight --adapter <adapter> --profile default
+--json` after validation to inspect module coverage, generated artifact paths,
+hybrid fallback decisions, and the apply command before anything mutates the
+host.
 
 When an example has `flake.lock`, validation runs `nix flake check` in locked
 mode with `--no-update-lock-file`. Without a lockfile, validation still checks
