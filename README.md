@@ -134,6 +134,9 @@ The current provider matrix is:
 Use the capability output when tooling needs to decide between adapters. It
 records each adapter's mode, engine, scope, supported host families, Nix
 requirement, and fallback behavior.
+The checked-in [`provider-matrix.json`](examples/providers/provider-matrix.json)
+is the contract used by example validation for provider targets and adapter
+host-family support.
 Use the recommendation command when starting from a host intent. Supported
 targets include `debian`, `ubuntu`, `arch`, `nixos`, `digitalocean`, `hetzner`,
 `macos`, and `rcm-only`.

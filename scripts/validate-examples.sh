@@ -20,21 +20,10 @@ root = pathlib.Path(sys.argv[1])
 json_output = sys.argv[2] == "true"
 errors = []
 checks = []
-provider_examples = {
-    "debian-vps": {"mode": "nix", "adapter": "home-manager", "nix_adapter": None},
-    "ubuntu-vps": {"mode": "nix", "adapter": "home-manager", "nix_adapter": None},
-    "arch-vps": {"mode": "nix", "adapter": "home-manager", "nix_adapter": None},
-    "nixos-vps": {"mode": "nix", "adapter": "nixos", "nix_adapter": None},
-    "digitalocean-droplet": {"mode": "hybrid", "adapter": "hybrid", "nix_adapter": "home-manager"},
-    "hetzner-cloud": {"mode": "hybrid", "adapter": "hybrid", "nix_adapter": "home-manager"},
-}
-adapter_capabilities = {
-    "rcm": {"mode": "rcm", "engine": "rcm", "requires_nix": False, "supports_fallback": False, "scope": "user"},
-    "home-manager": {"mode": "nix", "engine": "home-manager", "requires_nix": True, "supports_fallback": False, "scope": "user"},
-    "nix-darwin": {"mode": "nix", "engine": "nix-darwin", "requires_nix": True, "supports_fallback": False, "scope": "system"},
-    "nixos": {"mode": "nix", "engine": "nixos", "requires_nix": True, "supports_fallback": False, "scope": "system"},
-    "hybrid": {"mode": "hybrid", "engine": "home-manager", "requires_nix": True, "supports_fallback": True, "scope": "user"},
-}
+provider_matrix_path = root / "examples" / "providers" / "provider-matrix.json"
+provider_matrix = json.loads(provider_matrix_path.read_text())
+provider_examples = provider_matrix["providers"]
+adapter_capabilities = provider_matrix["adapters"]
 
 
 def record(name, path, ok, message):
@@ -85,6 +74,8 @@ for path in sorted(root.glob("**/smu.toml")) + sorted(root.glob("profiles/*.toml
         errors.append(f"{rel}: hybrid mode requires adapter hybrid")
     if mode == "hybrid" and nix_adapter not in {"home-manager", "nix-darwin", "nixos"}:
         errors.append(f"{rel}: hybrid mode requires a Nix-family nix_adapter")
+    if adapter in adapter_capabilities and mode != adapter_capabilities[adapter]["mode"]:
+        errors.append(f"{rel}: adapter {adapter} does not support mode {mode}")
     checks.append({
         "name": "mode-adapter",
         "path": str(rel),
@@ -119,6 +110,16 @@ for provider, expected in provider_examples.items():
         f"{mode or '<missing>'}/{adapter or '<missing>'}",
     )
     checks[-1]["capability"] = adapter_capabilities.get(adapter, {})
+    host_family = expected.get("host_family")
+    host_ok = bool(adapter and host_family in adapter_capabilities.get(adapter, {}).get("host_families", []))
+    if mode == "hybrid" and nix_adapter:
+        host_ok = host_ok and host_family in adapter_capabilities.get(nix_adapter, {}).get("host_families", [])
+    record(
+        "provider-host-family",
+        rel,
+        host_ok,
+        host_family or "<missing>",
+    )
 
 payload = {"valid": not errors, "errors": errors, "checks": checks}
 if json_output:

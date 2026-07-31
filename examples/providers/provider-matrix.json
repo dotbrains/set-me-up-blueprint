@@ -1,0 +1,82 @@
+{
+  "adapters": {
+    "home-manager": {
+      "engine": "home-manager",
+      "host_families": ["macos", "debian", "ubuntu", "arch", "linux"],
+      "mode": "nix",
+      "requires_nix": true,
+      "scope": "user",
+      "supports_fallback": false
+    },
+    "hybrid": {
+      "engine": "home-manager",
+      "host_families": ["macos", "debian", "ubuntu", "arch", "linux"],
+      "mode": "hybrid",
+      "requires_nix": true,
+      "scope": "user",
+      "supports_fallback": true
+    },
+    "nix-darwin": {
+      "engine": "nix-darwin",
+      "host_families": ["macos"],
+      "mode": "nix",
+      "requires_nix": true,
+      "scope": "system",
+      "supports_fallback": false
+    },
+    "nixos": {
+      "engine": "nixos",
+      "host_families": ["nixos"],
+      "mode": "nix",
+      "requires_nix": true,
+      "scope": "system",
+      "supports_fallback": false
+    },
+    "rcm": {
+      "engine": "rcm",
+      "host_families": ["macos", "debian", "ubuntu", "arch", "linux"],
+      "mode": "rcm",
+      "requires_nix": false,
+      "scope": "user",
+      "supports_fallback": false
+    }
+  },
+  "providers": {
+    "arch-vps": {
+      "adapter": "home-manager",
+      "host_family": "arch",
+      "mode": "nix",
+      "nix_adapter": null
+    },
+    "debian-vps": {
+      "adapter": "home-manager",
+      "host_family": "debian",
+      "mode": "nix",
+      "nix_adapter": null
+    },
+    "digitalocean-droplet": {
+      "adapter": "hybrid",
+      "host_family": "linux",
+      "mode": "hybrid",
+      "nix_adapter": "home-manager"
+    },
+    "hetzner-cloud": {
+      "adapter": "hybrid",
+      "host_family": "linux",
+      "mode": "hybrid",
+      "nix_adapter": "home-manager"
+    },
+    "nixos-vps": {
+      "adapter": "nixos",
+      "host_family": "nixos",
+      "mode": "nix",
+      "nix_adapter": null
+    },
+    "ubuntu-vps": {
+      "adapter": "home-manager",
+      "host_family": "ubuntu",
+      "mode": "nix",
+      "nix_adapter": null
+    }
+  }
+}
