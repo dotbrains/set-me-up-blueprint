@@ -34,3 +34,5 @@ Use `smu blueprint recommend --target ubuntu --path . --json` to turn a host
 intent into a recommended mode, adapter, and provider example.
 Add `--dry-run` to preview the generated starter config, or `--write --output
 smu.toml` to create it.
+Use `--validate` to prove an existing starter config still matches the selected
+target recommendation.

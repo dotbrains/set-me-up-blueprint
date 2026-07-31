@@ -116,6 +116,7 @@ smu blueprint providers --path . --json
 smu blueprint recommend --target ubuntu --path . --json
 smu blueprint recommend --target ubuntu --path . --dry-run
 smu blueprint recommend --target ubuntu --path . --write --output smu.toml
+smu blueprint recommend --target ubuntu --path . --validate --json
 smu provisioning-adapter capabilities --json
 ```
 
@@ -138,6 +139,8 @@ targets include `debian`, `ubuntu`, `arch`, `nixos`, `digitalocean`, `hetzner`,
 `macos`, and `rcm-only`.
 Add `--dry-run` to preview the generated starter `smu.toml`; add `--write
 --output smu.toml` to create it in a fork.
+Use `--validate` to check an existing starter config against the recommendation
+for that target.
 
 When an example has `flake.lock`, validation runs `nix flake check` in locked
 mode with `--no-update-lock-file`. Without a lockfile, validation still checks
