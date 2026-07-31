@@ -30,6 +30,7 @@ provider_matrix_path = root / "examples" / "providers" / "provider-matrix.json"
 provider_matrix = json.loads(provider_matrix_path.read_text())
 provider_examples = provider_matrix["providers"]
 adapter_capabilities = provider_matrix["adapters"]
+authoring_contract = provider_matrix.get("contract", {})
 
 
 def record(name, path, ok, message):
@@ -60,6 +61,16 @@ def parse_simple_toml(path):
         data[current][key.strip()] = value.strip().strip('"')
     return data
 
+
+record(
+    "adapter-authoring-contract",
+    provider_matrix_path.relative_to(root),
+    authoring_contract.get("version") == 1
+    and authoring_contract.get("module_manifest_table") == "adapters"
+    and "provisioning.adapter" in authoring_contract.get("blueprint_keys", [])
+    and "path" in authoring_contract.get("module_adapter_required_keys", []),
+    "version 1" if authoring_contract.get("version") == 1 else "missing or stale",
+)
 
 for path in sorted(root.glob("**/smu.toml")) + sorted(root.glob("profiles/*.toml")):
     if ".git" in path.parts:

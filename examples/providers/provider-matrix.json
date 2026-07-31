@@ -1,4 +1,12 @@
 {
+  "contract": {
+    "version": 1,
+    "blueprint_keys": ["provisioning.mode", "provisioning.adapter", "provisioning.nix_adapter"],
+    "module_manifest_table": "adapters",
+    "module_adapter_required_keys": ["path"],
+    "preflight_command": "smu provisioning-adapter preflight --adapter <adapter> --profile <profile> --json",
+    "ci_command": "smu blueprint ci --path <blueprint> --check-docs --json"
+  },
   "adapters": {
     "home-manager": {
       "engine": "home-manager",

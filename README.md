@@ -141,6 +141,8 @@ read-only CI/preflight commands expected before apply.
 The checked-in [`provider-matrix.json`](examples/providers/provider-matrix.json)
 is the contract used by example validation for provider targets and adapter
 host-family support.
+Its `contract.version` mirrors the installer capabilities contract so template
+forks can detect stale adapter authoring rules.
 Use the recommendation command when starting from a host intent. Supported
 targets include `debian`, `ubuntu`, `arch`, `nixos`, `digitalocean`, `hetzner`,
 `macos`, and `rcm-only`.

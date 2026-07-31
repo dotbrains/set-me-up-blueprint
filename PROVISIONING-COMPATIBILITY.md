@@ -33,6 +33,8 @@ Nix requirement, scope, fallback behavior, and adapter authoring contract.
 The checked-in `examples/providers/provider-matrix.json` mirrors that contract
 for template validation so provider examples and adapter host-family support do
 not drift.
+Its `contract.version` must match the installer capabilities contract version;
+`scripts/validate-examples.sh --json` fails when it is missing or stale.
 Use `smu blueprint recommend --target ubuntu --path . --json` to turn a host
 intent into a recommended mode, adapter, and provider example.
 Add `--dry-run` to preview the generated starter config, or `--write --output
