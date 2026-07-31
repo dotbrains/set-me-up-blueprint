@@ -142,7 +142,10 @@ The checked-in [`provider-matrix.json`](examples/providers/provider-matrix.json)
 is the contract used by example validation for provider targets and adapter
 host-family support.
 Its `contract.version` mirrors the installer capabilities contract so template
-forks can detect stale adapter authoring rules.
+forks can detect stale adapter authoring rules. `scripts/validate-examples.sh
+--json` includes that `contract` object in its readiness payload, which lets
+release tooling validate the blueprint output with the installer-owned `smu
+contract validate blueprint-ci-readiness --path -` command.
 Use the recommendation command when starting from a host intent. Supported
 targets include `debian`, `ubuntu`, `arch`, `nixos`, `digitalocean`, `hetzner`,
 `macos`, and `rcm-only`.

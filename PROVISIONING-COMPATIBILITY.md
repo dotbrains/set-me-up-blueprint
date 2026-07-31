@@ -50,3 +50,6 @@ that read-only gate is missing from a blueprint workflow.
 Machine-readable readiness payloads include `readiness.preflight` and
 `readiness.summary.workflow_preflight`, which agents and release tooling can
 use to prove a blueprint is still validating preflight coverage before apply.
+They also include the provider-matrix `contract` object, while the release
+helper validates the readiness shape with `smu contract validate
+blueprint-ci-readiness --path -`.
