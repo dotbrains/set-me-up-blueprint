@@ -134,7 +134,10 @@ The current provider matrix is:
 
 Use the capability output when tooling needs to decide between adapters. It
 records each adapter's mode, engine, scope, supported host families, Nix
-requirement, and fallback behavior.
+requirement, fallback behavior, and adapter authoring contract version.
+The top-level `contract` object identifies the supported `smu.toml` selection
+keys, the `module.toml` adapter table, required adapter fields, and the
+read-only CI/preflight commands expected before apply.
 The checked-in [`provider-matrix.json`](examples/providers/provider-matrix.json)
 is the contract used by example validation for provider targets and adapter
 host-family support.
@@ -206,6 +209,9 @@ The `smu blueprint ci` command is the stable installer-owned CI entrypoint.
 The local script is kept as a template fallback. Both wrap example validation
 and check the checked-in provisioning readiness matrix at
 [`PROVISIONING-COMPATIBILITY.md`](PROVISIONING-COMPATIBILITY.md).
+Their JSON payloads report `readiness.preflight` and
+`readiness.summary.workflow_preflight`, so agents can fail fast when a copied
+workflow no longer runs provisioning preflight.
 Use `smu blueprint migrate ...` locally when changing modes; use the CI
 contract plus read-only provisioning preflight to prove a committed blueprint
 remains internally consistent before any apply command can run.

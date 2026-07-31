@@ -20,6 +20,12 @@ root = pathlib.Path(sys.argv[1])
 json_output = sys.argv[2] == "true"
 errors = []
 checks = []
+summary = {
+    "configs": 0,
+    "provider_examples": 0,
+    "workflow_examples": 0,
+    "workflow_preflight": 0,
+}
 provider_matrix_path = root / "examples" / "providers" / "provider-matrix.json"
 provider_matrix = json.loads(provider_matrix_path.read_text())
 provider_examples = provider_matrix["providers"]
@@ -58,6 +64,7 @@ def parse_simple_toml(path):
 for path in sorted(root.glob("**/smu.toml")) + sorted(root.glob("profiles/*.toml")):
     if ".git" in path.parts:
         continue
+    summary["configs"] += 1
     provisioning = parse_simple_toml(path).get("provisioning", {})
     mode = provisioning.get("mode")
     adapter = provisioning.get("adapter")
@@ -88,8 +95,11 @@ for workflow in ("rcm.yml", "nix.yml", "hybrid.yml"):
     rel = path.relative_to(root)
     record("github-actions-example", rel, path.exists(), "present" if path.exists() else "missing")
     if path.exists():
+        summary["workflow_examples"] += 1
         workflow_text = path.read_text()
         has_preflight = "provisioning-adapter preflight" in workflow_text
+        if has_preflight:
+            summary["workflow_preflight"] += 1
         record(
             "github-actions-preflight",
             rel,
@@ -118,6 +128,8 @@ for provider, expected in provider_examples.items():
         ok,
         f"{mode or '<missing>'}/{adapter or '<missing>'}",
     )
+    if ok:
+        summary["provider_examples"] += 1
     checks[-1]["capability"] = adapter_capabilities.get(adapter, {})
     host_family = expected.get("host_family")
     host_ok = bool(adapter and host_family in adapter_capabilities.get(adapter, {}).get("host_families", []))
@@ -130,7 +142,15 @@ for provider, expected in provider_examples.items():
         host_family or "<missing>",
     )
 
-payload = {"valid": not errors, "errors": errors, "checks": checks}
+payload = {
+    "valid": not errors,
+    "errors": errors,
+    "readiness": {
+        "preflight": "passed" if not errors else "failed",
+        "summary": summary,
+    },
+    "checks": checks,
+}
 if json_output:
     print(json.dumps(payload, indent=2, sort_keys=True))
     sys.exit(0 if not errors else 1)

@@ -29,7 +29,7 @@ Use `smu blueprint providers --path . --json` to print this provider support
 matrix for tools or docs generators.
 Use `smu provisioning-adapter capabilities --json` to print the adapter
 capability contract that explains each adapter's mode, engine, host families,
-Nix requirement, scope, and fallback behavior.
+Nix requirement, scope, fallback behavior, and adapter authoring contract.
 The checked-in `examples/providers/provider-matrix.json` mirrors that contract
 for template validation so provider examples and adapter host-family support do
 not drift.
@@ -45,3 +45,6 @@ paths, hybrid fallback decisions, and intended commands without mutating the
 host.
 The GitHub Actions examples include a preflight step so CI templates fail when
 that read-only gate is missing from a blueprint workflow.
+Machine-readable readiness payloads include `readiness.preflight` and
+`readiness.summary.workflow_preflight`, which agents and release tooling can
+use to prove a blueprint is still validating preflight coverage before apply.
