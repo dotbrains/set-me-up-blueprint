@@ -114,6 +114,8 @@ Inspect the supported provider shapes before choosing a blueprint mode:
 ```bash
 smu blueprint providers --path . --json
 smu blueprint recommend --target ubuntu --path . --json
+smu blueprint recommend --target ubuntu --path . --dry-run
+smu blueprint recommend --target ubuntu --path . --write --output smu.toml
 smu provisioning-adapter capabilities --json
 ```
 
@@ -134,6 +136,8 @@ requirement, and fallback behavior.
 Use the recommendation command when starting from a host intent. Supported
 targets include `debian`, `ubuntu`, `arch`, `nixos`, `digitalocean`, `hetzner`,
 `macos`, and `rcm-only`.
+Add `--dry-run` to preview the generated starter `smu.toml`; add `--write
+--output smu.toml` to create it in a fork.
 
 When an example has `flake.lock`, validation runs `nix flake check` in locked
 mode with `--no-update-lock-file`. Without a lockfile, validation still checks

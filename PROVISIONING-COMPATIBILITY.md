@@ -32,3 +32,5 @@ capability contract that explains each adapter's mode, engine, host families,
 Nix requirement, scope, and fallback behavior.
 Use `smu blueprint recommend --target ubuntu --path . --json` to turn a host
 intent into a recommended mode, adapter, and provider example.
+Add `--dry-run` to preview the generated starter config, or `--write --output
+smu.toml` to create it.
