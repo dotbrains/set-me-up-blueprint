@@ -28,6 +28,23 @@ examples_json="$(scripts/validate-examples.sh --json)"
 docs_ok=true
 docs_message="not checked"
 docs_path="PROVISIONING-COMPATIBILITY.md"
+contracts_ok=true
+contracts_message="validated"
+contracts=(
+    plan
+    secrets-doctor
+    trust-doctor
+    support-bundle
+    conformance
+)
+
+for contract in "${contracts[@]}"; do
+    if ! python3 set-me-up-installer/smu.py contract validate "$contract" --json >/dev/null; then
+        contracts_ok=false
+        contracts_message="failed: $contract"
+        break
+    fi
+done
 
 if "$check_docs"; then
     if [ -f "$docs_path" ] &&
@@ -41,19 +58,23 @@ if "$check_docs"; then
 fi
 
 if "$json_output"; then
-    python3 - "$examples_json" "$docs_ok" "$docs_message" "$docs_path" <<'PY'
+    python3 - "$examples_json" "$docs_ok" "$docs_message" "$docs_path" "$contracts_ok" "$contracts_message" <<'PY'
 import json
 import sys
 
 examples = json.loads(sys.argv[1])
 docs_ok = sys.argv[2] == "true"
 payload = {
-    "valid": examples["valid"] and docs_ok,
+    "valid": examples["valid"] and docs_ok and sys.argv[5] == "true",
     "examples": examples,
     "docs": {
         "path": sys.argv[4],
         "ok": docs_ok,
         "message": sys.argv[3],
+    },
+    "contracts": {
+        "ok": sys.argv[5] == "true",
+        "message": sys.argv[6],
     },
 }
 print(json.dumps(payload, indent=2, sort_keys=True))
@@ -63,6 +84,10 @@ PY
 fi
 
 scripts/validate-examples.sh
+if ! "$contracts_ok"; then
+    printf "FAIL contracts: %s\\n" "$contracts_message" >&2
+    exit 1
+fi
 if ! "$docs_ok"; then
     printf "FAIL %s: %s\\n" "$docs_path" "$docs_message" >&2
     exit 1
