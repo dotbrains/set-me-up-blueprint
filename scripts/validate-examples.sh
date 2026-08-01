@@ -13,6 +13,10 @@ cd "$repo_root"
 
 python3 - "$repo_root" "$json_output" <<'PY'
 import json
+import os
+import shutil
+import shlex
+import subprocess
 import pathlib
 import sys
 
@@ -43,6 +47,34 @@ expected_authoring_contract = {
     "preflight_command": "smu provisioning-adapter preflight --adapter <adapter> --profile <profile> --json",
     "ci_command": "smu blueprint ci --path <blueprint> --check-docs --json",
 }
+schema_validation = {
+    "contract": "blueprint-ci-readiness",
+    "version": authoring_contract.get("version"),
+    "validator": "local",
+    "schema": None,
+    "path": "scripts/validate-examples.sh",
+}
+
+contract_cli = shlex.split(os.environ["SMU_CONTRACT_CLI"]) if "SMU_CONTRACT_CLI" in os.environ else None
+if not contract_cli:
+    installer = shutil.which("smu.py") or shutil.which("smu")
+    contract_cli = [installer] if installer else None
+if contract_cli:
+    try:
+        schema_probe = subprocess.run(
+            [*contract_cli, "contract", "schema", "blueprint-ci-readiness"],
+            check=False,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+            text=True,
+            timeout=10,
+        )
+    except subprocess.TimeoutExpired:
+        schema_probe = None
+    if schema_probe and schema_probe.returncode == 0:
+        schema_validation["validator"] = "smu"
+        schema_validation["schema"] = json.loads(schema_probe.stdout).get("$id")
+        schema_validation["path"] = " ".join(contract_cli)
 
 
 def record(name, path, ok, message):
@@ -164,6 +196,7 @@ for provider, expected in provider_examples.items():
 
 payload = {
     "contract": authoring_contract,
+    "schema_validation": schema_validation,
     "valid": not errors,
     "errors": errors,
     "readiness": {
@@ -172,6 +205,28 @@ payload = {
     },
     "checks": checks,
 }
+if schema_validation["validator"] == "smu":
+    try:
+        schema_check = subprocess.run(
+            [*contract_cli, "contract", "validate", "blueprint-ci-readiness", "--path", "-"],
+            input=json.dumps(payload),
+            check=False,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.PIPE,
+            text=True,
+            timeout=10,
+        )
+    except subprocess.TimeoutExpired:
+        schema_check = subprocess.CompletedProcess([], 1, stderr="schema validation timed out")
+    if schema_check.returncode != 0:
+        record(
+            "schema-backed-readiness",
+            pathlib.Path(schema_validation["path"]).name,
+            False,
+            schema_check.stderr.strip() or "schema validation failed",
+        )
+        payload["valid"] = False
+        payload["errors"] = errors
 if json_output:
     print(json.dumps(payload, indent=2, sort_keys=True))
     sys.exit(0 if not errors else 1)

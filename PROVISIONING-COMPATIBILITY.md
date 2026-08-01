@@ -53,3 +53,8 @@ use to prove a blueprint is still validating preflight coverage before apply.
 They also include the provider-matrix `contract` object, while the release
 helper validates the readiness shape with `smu contract validate
 blueprint-ci-readiness --path -`.
+Blueprint validation reports `schema_validation.validator` as `smu` when the
+installer CLI is available and `local` when running from a portable template
+checkout. Set `SMU_CONTRACT_CLI="python3 /path/to/smu.py"` in CI to force a
+specific installer checkout. Provider examples for Debian, Ubuntu, Arch,
+NixOS, DigitalOcean, and Hetzner stay covered either way.

@@ -145,7 +145,11 @@ Its `contract.version` mirrors the installer capabilities contract so template
 forks can detect stale adapter authoring rules. `scripts/validate-examples.sh
 --json` includes that `contract` object in its readiness payload, which lets
 release tooling validate the blueprint output with the installer-owned `smu
-contract validate blueprint-ci-readiness --path -` command.
+contract validate blueprint-ci-readiness --path -` command. When `smu` is on
+`PATH`, the local validator uses that schema-backed command before emitting the
+payload. CI can also set `SMU_CONTRACT_CLI="python3 /path/to/smu.py"` to point
+at an installer checkout explicitly. Without an available installer command it
+reports the local fallback in `schema_validation`.
 Use the recommendation command when starting from a host intent. Supported
 targets include `debian`, `ubuntu`, `arch`, `nixos`, `digitalocean`, `hetzner`,
 `macos`, and `rcm-only`.
@@ -217,6 +221,9 @@ and check the checked-in provisioning readiness matrix at
 Their JSON payloads report `readiness.preflight` and
 `readiness.summary.workflow_preflight`, so agents can fail fast when a copied
 workflow no longer runs provisioning preflight.
+They also report `schema_validation.validator`, `schema_validation.contract`,
+and `schema_validation.path` so CI can distinguish installer-backed schema
+validation from the portable local fallback.
 Use `smu blueprint migrate ...` locally when changing modes; use the CI
 contract plus read-only provisioning preflight to prove a committed blueprint
 remains internally consistent before any apply command can run.
